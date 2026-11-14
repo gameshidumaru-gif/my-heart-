@@ -1,0 +1,523 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Heart | A Story For You</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --pink: #e9a9bd;
+  --cream: #fff1eb;
+  --dark: #211823;
+  --muted: #d9c5d0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background:
+    radial-gradient(circle at 20% 20%, #54334f 0%, transparent 40%),
+    linear-gradient(140deg, #17131f, #382538, #17131f);
+  color: var(--cream);
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .35;
+  background-image:
+    radial-gradient(white 1px, transparent 1px);
+  background-size: 45px 45px;
+  animation: stars 25s linear infinite;
+  z-index: -1;
+}
+
+@keyframes stars {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100px); }
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 17px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(25, 18, 29, .65);
+  backdrop-filter: blur(15px);
+  z-index: 100;
+  border-bottom: 1px solid #ffffff12;
+}
+
+.logo {
+  font-family: 'DM Serif Display', serif;
+  color: var(--pink);
+  letter-spacing: 2px;
+  font-size: 21px;
+}
+
+.counter {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.page {
+  display: none;
+  min-height: 100vh;
+  padding: 105px 22px 115px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  animation: appear .8s ease;
+}
+
+.page.active {
+  display: flex;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.content {
+  width: 100%;
+  max-width: 650px;
+  margin: auto;
+}
+
+.eyebrow {
+  color: var(--pink);
+  letter-spacing: 4px;
+  font-size: 10px;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
+
+h1, h2 {
+  font-family: 'DM Serif Display', serif;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: clamp(48px, 12vw, 82px);
+  line-height: 1.05;
+}
+
+h2 {
+  font-size: clamp(35px, 8vw, 54px);
+  margin-bottom: 18px;
+}
+
+p {
+  color: var(--muted);
+  line-height: 2;
+  font-size: 13px;
+}
+
+.highlight {
+  color: var(--pink);
+  font-style: italic;
+}
+
+.heart {
+  color: #f4a6c1;
+  font-size: 55px;
+  display: block;
+  margin-bottom: 20px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  50% { transform: scale(1.18); }
+}
+
+.photo-frame {
+  width: 100%;
+  max-width: 390px;
+  height: min(58vh, 490px);
+  margin: 25px auto;
+  padding: 9px;
+  background: linear-gradient(135deg, #f8d5df, #a87894, #f8d5df);
+  border-radius: 180px 180px 25px 25px;
+  box-shadow: 0 20px 65px #0008;
+  transform: rotate(-1deg);
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 175px 175px 20px 20px;
+  display: block;
+}
+
+.caption {
+  font-family: 'DM Serif Display', serif;
+  font-size: 23px;
+  color: var(--cream);
+  margin: 15px 0 8px;
+}
+
+.button {
+  border: 1px solid #e9a9bd80;
+  background: #e9a9bd18;
+  color: var(--cream);
+  padding: 13px 25px;
+  border-radius: 40px;
+  margin: 12px 5px;
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.button:hover {
+  background: var(--pink);
+  color: var(--dark);
+  transform: translateY(-3px);
+}
+
+.primary {
+  background: var(--pink);
+  color: var(--dark);
+}
+
+nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 10px 22px;
+  background: rgba(25, 18, 29, .8);
+  backdrop-filter: blur(15px);
+  border-top: 1px solid #ffffff12;
+  z-index: 100;
+}
+
+nav button {
+  background: transparent;
+  border: 1px solid #ffffff30;
+  color: var(--cream);
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+nav button.selected {
+  background: var(--pink);
+  color: var(--dark);
+  border-color: var(--pink);
+}
+
+.letter {
+  padding: 28px;
+  border: 1px solid #e9a9bd55;
+  background: #ffffff08;
+  border-radius: 18px;
+  text-align: left;
+  line-height: 2.2;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.timeline {
+  text-align: left;
+  border-left: 1px solid var(--pink);
+  margin: 30px 10px;
+  padding-left: 25px;
+}
+
+.event {
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.event::before {
+  content: "♥";
+  position: absolute;
+  left: -34px;
+  color: var(--pink);
+}
+
+.event h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 21px;
+  font-weight: 400;
+  color: var(--pink);
+  margin-bottom: 5px;
+}
+
+.music {
+  position: fixed;
+  right: 15px;
+  top: 75px;
+  z-index: 110;
+  background: #382538;
+  border: 1px solid #e9a9bd70;
+  color: white;
+  border-radius: 30px;
+  padding: 10px 15px;
+  font-size: 11px;
+}
+
+footer {
+  color: #b99eae;
+  font-size: 10px;
+  margin-top: 30px;
+  letter-spacing: 2px;
+}
+
+@media (max-width: 420px) {
+  nav { gap: 6px; }
+  nav button { width: 31px; height: 31px; }
+  .page { padding-left: 18px; padding-right: 18px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">MY HEART ♡</div>
+  <div class="counter" id="counter">01 / 09</div>
+</header>
+
+<audio id="bgMusic" loop preload="none">
+  <source src="assets/music.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music" id="musicButton" onclick="toggleMusic()">
+  ♫ Putar Musik
+</button>
+
+<!-- 1. COVER -->
+<section class="page active">
+  <div class="content">
+    <span class="heart">♡</span>
+    <div class="eyebrow">A little story for someone special</div>
+    <h1>My <span class="highlight">Heart.</span></h1>
+    <p style="margin:25px 0">
+      Ada banyak hal yang sulit dijelaskan dengan kata-kata.
+      Jadi, aku mencoba menyimpannya di sini.
+    </p>
+    <button class="button primary" onclick="goTo(1)">
+      Buka cerita ini ♡
+    </button>
+    <footer>MADE WITH LOVE</footer>
+  </div>
+</section>
+
+<!-- 2. LETTER -->
+<section class="page">
+  <div class="content">
+    <div class="eyebrow">Chapter 01 · A letter</div>
+    <h2>Untuk <span class="highlight">Kamu.</span></h2>
+    <div class="letter">
+      Ada sesuatu yang ingin aku sampaikan.
+
+      <br><br>
+      Aku ingin membuat sesuatu yang sederhana,
+      tetapi punya arti yang tidak sederhana.
+
+      <br><br>
+      Mungkin website ini tidak sempurna.
+      Namun, setiap bagian di dalamnya dibuat
+      dengan sebuah niat baik.
+
+      <br><br>
+      Terima kasih sudah menjadi bagian dari
+      cerita yang ingin aku kenang.
+    </div>
+    <button class="button primary" onclick="goTo(2)">Lihat kenangan →</button>
+  </div>
+</section>
+
+<!-- 3. PHOTO 1 -->
+<section class="page">
+  <div class="content">
+    <div class="eyebrow">Chapter 02 · Memory one</div>
+    <h2>Satu <span class="highlight">Kenangan.</span></h2>
+    <div class="photo-frame">
+      <img src="assets/photo1.jpg" alt="Kenangan pertama">
+    </div>
+    <div class="caption">A moment to remember</div>
+    <p>Satu gambar, banyak cerita yang tersimpan.</p>
+    <button class="button primary" onclick="goTo(3)">Selanjutnya →</button>
+  </div>
+</section>
+
+<!-- 4. PHOTO 2 -->
+<section class="page">
+  <div class="content">
+    <div class="eyebrow">Chapter 03 · Memory two</div>
+    <h2>Hal-hal <span class="highlight">Kecil.</span></h2>
+    <div class="photo-frame">
+      <img src="assets/photo2.jpg" alt="Kenangan kedua">
+    </div>
+    <div class="caption">Little things matter</div>
+    <p>Karena terkadang hal sederhana justru paling berarti.</p>
+    <button class="button primary" onclick="goTo(4)">Selanjutnya →</button>
+  </div>
+</section>
+
+<!-- 5. PHOTO 3 -->
+<section class="page">
+  <div class="content">
+    <div class="eyebrow">Chapter 04 · Memory three</div>
+    <h2>Sebuah <span class="highlight">Senyum.</span></h2>
+    <div class="photo-frame">
+      <img src="assets/photo3.jpg" alt="Kenangan ketiga">
+    </div>
+    <div class="caption">A beautiful memory</div>
+    <p>Ada momen yang tidak perlu banyak penjelasan.</p>
+    <button class="button primary" onclick="goTo(5)">Selanjutnya →</button>
+  </div>
+</section>
+
+<!-- 6. PHOTO 4 -->
+<section class="page">
+  <div class="content">
+    <div class="eyebrow">Chapter 05 · Memory four</div>
+    <h2>Tetap <span class="highlight">Terkenang.</span></h2>
+    <div class="photo-frame">
+      <img src="assets/photo4.jpg" alt="Kenangan keempat">
+    </div>
+    <div class="caption">Forever in this little story</div>
+    <p>Beberapa kenangan pantas mendapat tempat istimewa.</p>
+    <button class="button primary" onclick="goTo(6)">Lanjutkan cerita →</button>
+  </div>
+</section>
+
+<!-- 7. TIMELINE -->
+<section class="page">
+  <div class="content">
+    <div class="eyebrow">Chapter 06 · Our little timeline</div>
+    <h2>Potongan <span class="highlight">Cerita.</span></h2>
+    <div class="timeline">
+      <div class="event">
+        <h3>Awal cerita</h3>
+        <p>Semuanya dimulai dari sebuah pertemuan.</p>
+      </div>
+      <div class="event">
+        <h3>Momen sederhana</h3>
+        <p>Hal kecil yang kemudian menjadi kenangan.</p>
+      </div>
+      <div class="event">
+        <h3>Hari ini</h3>
+        <p>Sebuah cerita yang masih terus berjalan.</p>
+      </div>
+    </div>
+    <button class="button primary" onclick="goTo(7)">Ada satu pesan lagi →</button>
+  </div>
+</section>
+
+<!-- 8. MESSAGE -->
+<section class="page">
+  <div class="content">
+    <div class="eyebrow">Chapter 07 · A little reminder</div>
+    <span class="heart">✧</span>
+    <h2>Jangan lupa <span class="highlight">Bahagia.</span></h2>
+    <p>
+      Semoga hari-harimu dipenuhi hal baik.
+      Semoga langkahmu selalu punya alasan
+      untuk terus tumbuh dan tersenyum.
+    </p>
+    <br>
+    <p>Dan semoga kamu selalu ingat bahwa dirimu berharga.</p>
+    <button class="button primary" onclick="goTo(8)">Pesan terakhir →</button>
+  </div>
+</section>
+
+<!-- 9. ENDING -->
+<section class="page">
+  <div class="content">
+    <div class="eyebrow">The end · But not the memories</div>
+    <span class="heart">♡</span>
+    <h1>Thank <span class="highlight">You.</span></h1>
+    <p style="margin:25px 0">
+      Terima kasih sudah membaca cerita kecil ini.
+      Semoga sesuatu yang sederhana ini
+      bisa menjadi kenangan yang indah.
+    </p>
+    <button class="button primary" onclick="goTo(0)">
+      ↺ Baca dari awal
+    </button>
+    <footer>END OF THIS LITTLE STORY · WITH LOVE</footer>
+  </div>
+</section>
+
+<nav id="navigation">
+  <button class="selected" onclick="goTo(0)">1</button>
+  <button onclick="goTo(1)">2</button>
+  <button onclick="goTo(2)">3</button>
+  <button onclick="goTo(3)">4</button>
+  <button onclick="goTo(4)">5</button>
+  <button onclick="goTo(5)">6</button>
+  <button onclick="goTo(6)">7</button>
+  <button onclick="goTo(7)">8</button>
+  <button onclick="goTo(8)">9</button>
+</nav>
+
+<script>
+const pages = document.querySelectorAll(".page");
+const navButtons = document.querySelectorAll("nav button");
+const counter = document.getElementById("counter");
+
+function goTo(index) {
+  pages.forEach((page, i) => {
+    page.classList.toggle("active", i === index);
+  });
+
+  navButtons.forEach((button, i) => {
+    button.classList.toggle("selected", i === index);
+  });
+
+  counter.textContent =
+    String(index + 1).padStart(2, "0") + " / 09";
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+const music = document.getElementById("bgMusic");
+const musicButton = document.getElementById("musicButton");
+
+async function toggleMusic() {
+  if (music.paused) {
+    try {
+      await music.play();
+      musicButton.textContent = "♫ Matikan Musik";
+    } catch (error) {
+      alert("Musik belum ditemukan. Periksa assets/music.mp3");
+    }
+  } else {
+    music.pause();
+    musicButton.textContent = "♫ Putar Musik";
+  }
+}
+</script>
+
+</body>
+</html>
